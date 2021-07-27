@@ -1,8 +1,8 @@
 from treenode import TreeNode
 
 class Mult(TreeNode):
-    def __init__(self):
-        super().__init__("*")
+    def __init__(self, left, right):
+        super().__init__(left, right)
 
     def print(self):
         print("(", end ="")

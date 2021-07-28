@@ -7,6 +7,26 @@ from number import Number
 import tokenize
 from io import StringIO
 
+
+# Object that takes a string input, parses that input into tokens, and evaluates
+# the representation of the input
+#
+# inputTokens => List that contains a tokenized version of the input
+# nextToken   => Next unscanned token from the inputTokens List
+# resultTree  => TreeNode Object that contains the root node of the expression
+#
+# parseE()    => Parses the next expression from the input. This also creates the
+#                addition and subtraction objects since it has lower precedence than
+#                parseT() and parseF()
+# parseT()    => Parses the next term from the input. This also creates the multiplication
+#                and division objects since it has lower precedence than parseF()
+# parseF()    => Parses the next factor from the input. This also deals with parentheses
+#                and creates the negation objects since it has the highest precendence
+# print()     => Useful for debugging code and determining order of operations
+# eval()      => Returns the sum of left and right
+# scanToken() => Pops the first token from inputTokens and assigns the string value to
+#                nextToken
+
 class Calc:
     def __init__(self, inputStr):
         self.inputTokens = []
@@ -27,16 +47,10 @@ class Calc:
 
         while True:
             if self.nextToken == "+":
-                
-                #print("+")
-                
                 self.scanToken()
                 b = self.parseT()
                 a = Add(a,b)
             elif self.nextToken == "-":
-                
-                #print("-")
-                
                 self.scanToken()
                 b = self.parseT()
                 a = Subtract(a,b)
@@ -48,16 +62,10 @@ class Calc:
 
         while True:
             if self.nextToken == "*":
-                
-                #print("*")
-                
                 self.scanToken()
                 b = self.parseT()
                 a = Mult(a,b)
             elif self.nextToken == "/":
-                
-                #print("/")
-                
                 self.scanToken()
                 b = self.parseT()
                 a = Div(a,b)
@@ -66,16 +74,10 @@ class Calc:
 
     def parseF(self):
         if self.nextToken.replace(".","").isnumeric():
-            
-            #print(self.nextToken)
-
             num = Number(self.nextToken)
             self.scanToken()
             return num
         elif self.nextToken == "(":
-            
-            #print("(")
-            
             self.scanToken()
             a = self.parseE()
 
@@ -83,17 +85,11 @@ class Calc:
                 return None
             
             if self.nextToken == ")":
-                
-                #print(")")
-                
                 self.scanToken()
                 return a
             else:
                 return None
         elif self.nextToken == "-":
-            
-            #print("-")
-            
             self.scanToken()
             return Negate(self.parseF())
         else:

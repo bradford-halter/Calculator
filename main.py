@@ -1,5 +1,8 @@
 from calc import Calc
 
+# Runs the calculator by passing in the user input to a calculator object and
+# attempting to print the evaluation of the input
+
 def main():
     print("Welcome to simple calculator")
 

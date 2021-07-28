@@ -6,15 +6,14 @@ import tokenize
 from io import StringIO
 
 def test():
-    #tn1 = TreeNode(5)
-    int1 = Number(1)
-    int2 = Number(5)
-    int3 = Number(2)
-    a1 = Add(int1, int2)
+    #int1 = Number(1)
+    #int2 = Number(5)
+    #int3 = Number(2)
+    #a1 = Add(int1, int2)
 
-    n1 = Negate(a1)
+    #n1 = Negate(a1)
 
-    m1 = Mult(n1, int3)
+    #m1 = Mult(n1, int3)
     
     #int1.print()
     #int2.print()
@@ -31,15 +30,15 @@ def test():
     #test = "."
     #print(test in digit)
 
-    test = input()
+    #test = input()
 
-    testTokens = []
+    #testTokens = []
     
-    for token in tokenize.generate_tokens(StringIO(test).readline):
-        testTokens.append(token)
+    #for token in tokenize.generate_tokens(StringIO(test).readline):
+    #    testTokens.append(token)
 
-    while len(testTokens) > 0:
-        print(testTokens.pop(0).string)
+    #while len(testTokens) > 0:
+    #    print(testTokens.pop(0).string)
 
 
     #print(testTokens.pop(0).string)
@@ -58,6 +57,8 @@ def test():
 
     #test = []
     #print(test[0])
+
+    test = None
 
 
 

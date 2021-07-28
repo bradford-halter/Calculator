@@ -1,7 +1,7 @@
 from add import Add
 from subtract import Subtract
-from mult import Mult
-from div import Div
+from multiply import Multiply
+from divide import Divide
 from negate import Negate
 from number import Number
 import tokenize
@@ -14,18 +14,6 @@ from io import StringIO
 # inputTokens => List that contains a tokenized version of the input
 # nextToken   => Next unscanned token from the inputTokens List
 # resultTree  => TreeNode Object that contains the root node of the expression
-#
-# parseE()    => Parses the next expression from the input. This also creates the
-#                addition and subtraction objects since it has lower precedence than
-#                parseT() and parseF()
-# parseT()    => Parses the next term from the input. This also creates the multiplication
-#                and division objects since it has lower precedence than parseF()
-# parseF()    => Parses the next factor from the input. This also deals with parentheses
-#                and creates the negation objects since it has the highest precendence
-# print()     => Useful for debugging code and determining order of operations
-# eval()      => Returns the sum of left and right
-# scanToken() => Pops the first token from inputTokens and assigns the string value to
-#                nextToken
 
 class Calc:
     def __init__(self, inputStr):
@@ -37,49 +25,55 @@ class Calc:
 
             if len(self.inputTokens) > 0:
                 self.nextToken = self.inputTokens.pop(0).string
-                self.resultTree = self.parseE()
+                self.resultTree = self.parseExpression()
             else:
                 self.nextToken = None
                 self.resultTree = None
 
-    def parseE(self):
-        a = self.parseT()
+    # Parses the next expression from the input. This also creates the addition and 
+    # subtraction objects since it has lower precedence than parseTerm() and parseFactor()
+    def parseExpression(self):
+        a = self.parseTerm()
 
         while True:
             if self.nextToken == "+":
                 self.scanToken()
-                b = self.parseT()
+                b = self.parseTerm()
                 a = Add(a,b)
             elif self.nextToken == "-":
                 self.scanToken()
-                b = self.parseT()
+                b = self.parseTerm()
                 a = Subtract(a,b)
             else:
                 return a
 
-    def parseT(self):
-        a = self.parseF()
+    # Parses the next term from the input. This also creates the multiplication
+    # and division objects since it has lower precedence than parseFactor()
+    def parseTerm(self):
+        a = self.parseFactor()
 
         while True:
             if self.nextToken == "*":
                 self.scanToken()
-                b = self.parseT()
-                a = Mult(a,b)
+                b = self.parseTerm()
+                a = Multiply(a,b)
             elif self.nextToken == "/":
                 self.scanToken()
-                b = self.parseT()
-                a = Div(a,b)
+                b = self.parseTerm()
+                a = Divide(a,b)
             else:
                 return a
 
-    def parseF(self):
+    # Parses the next factor from the input. This also deals with parentheses
+    # and creates the negation objects since it has the highest precendence
+    def parseFactor(self):
         if self.nextToken.replace(".","").isnumeric():
             num = Number(self.nextToken)
             self.scanToken()
             return num
         elif self.nextToken == "(":
             self.scanToken()
-            a = self.parseE()
+            a = self.parseExpression()
 
             if a == None:
                 return None
@@ -91,10 +85,11 @@ class Calc:
                 return None
         elif self.nextToken == "-":
             self.scanToken()
-            return Negate(self.parseF())
+            return Negate(self.parseFactor())
         else:
             return None
 
+    # Useful for debugging code and determining order of operations
     def print(self):
         try:
             self.resultTree.print()
@@ -102,13 +97,15 @@ class Calc:
         except:
             print("Invalid Input")
 
+    # Returns the value of the input expression
     def eval(self):
         try:
-            print(self.resultTree.eval())
+            self.resultTree.eval()
         except:
             print("Invalid Input")
         
 
+    # Pops the first token from inputTokens and assigns the string value to nextToken
     def scanToken(self):
         if len(self.inputTokens) > 0:
             self.nextToken = self.inputTokens.pop(0).string

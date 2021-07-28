@@ -4,14 +4,12 @@ from treenode import TreeNode
 # subtracts the left and right TreeNodes together
 #
 # left, right => TreeNode which can either be a new expression or a number
-#
-# print()     => Useful for debugging code and determining order of operations
-# eval()      => Returns the difference of left and right
 
 class Subtract(TreeNode):
     def __init__(self, left, right):
         super().__init__(left, right)
 
+    # Useful for debugging code and determining order of operations
     def print(self):
         print("(", end ="")
         self.left.print()
@@ -19,5 +17,6 @@ class Subtract(TreeNode):
         self.right.print()
         print(")", end ="")
 
+    # Returns the difference of left and right
     def eval(self):
         return self.left.eval() - self.right.eval()

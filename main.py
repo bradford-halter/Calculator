@@ -19,7 +19,7 @@ def main():
             calc = Calc(expression.replace(" ", ""))
 
             #calc.print()
-            calc.eval()
+            print(calc.eval())
 
     print("Have a good day!")
 

@@ -20,7 +20,8 @@ class Calc:
         self.inputTokens = []
 
         if len(inputStr) > 0:
-            for token in tokenize.generate_tokens(StringIO(inputStr).readline):
+            for token in tokenize.generate_tokens(
+                StringIO(inputStr).readline):
                 self.inputTokens.append(token)
 
             if len(self.inputTokens) > 0:
@@ -30,8 +31,9 @@ class Calc:
                 self.nextToken = None
                 self.resultTree = None
 
-    # Parses the next expression from the input. This also creates the addition and 
-    # subtraction objects since it has lower precedence than parseTerm() and parseFactor()
+    # Parses the next expression from the input. This also creates the addition 
+    # and subtraction objects since it has lower precedence than parseTerm()
+    # and parseFactor()
     def parseExpression(self):
         a = self.parseTerm()
 
@@ -47,8 +49,9 @@ class Calc:
             else:
                 return a
 
-    # Parses the next term from the input. This also creates the multiplication
-    # and division objects since it has lower precedence than parseFactor()
+    # Parses the next term from the input. This also creates the 
+    # multiplication and division objects since it has lower precedence 
+    # than parseFactor()
     def parseTerm(self):
         a = self.parseFactor()
 
@@ -105,7 +108,8 @@ class Calc:
             print("Invalid Input")
         
 
-    # Pops the first token from inputTokens and assigns the string value to nextToken
+    # Pops the first token from inputTokens and assigns the string value to 
+    # nextToken
     def scanToken(self):
         if len(self.inputTokens) > 0:
             self.nextToken = self.inputTokens.pop(0).string

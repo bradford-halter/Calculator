@@ -1,5 +1,6 @@
 
-# Object that stores a value and decides if the value should be a float or an int
+# Object that stores a value and decides if the value should be a float or
+# an int
 #
 # val     => stores a float or int value
 

@@ -50,10 +50,8 @@ def test():
     tests.append("3*(2+2)")
     tests.append("(2+4)/2")
     tests.append("")
-
-    
-    #test7 = "())"
-    #test8 = "5**5"
+    tests.append("())")
+    tests.append("5**5")
 
     for test in tests:
         calc = Calc(test)

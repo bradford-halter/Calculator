@@ -1,7 +1,7 @@
 from treenode import TreeNode
 
-# TreeNode Object that stores a left TreeNode, a right TreeNode, and implicitly
-# multiplies the left and right TreeNodes together
+# TreeNode Object that stores a left TreeNode, a right TreeNode, and 
+# implicitly multiplies the left and right TreeNodes together
 #
 # left, right => TreeNode which can either be a new expression or a number
 

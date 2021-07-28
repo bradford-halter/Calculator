@@ -1,9 +1,10 @@
 from add import Add
 from negate import Negate
-from mult import Mult
+from multiply import Multiply
 from number import Number
 import tokenize
 from io import StringIO
+from calc import Calc
 
 def test():
     #int1 = Number(1)
@@ -26,27 +27,6 @@ def test():
     #test = "helloooo  !"
     #print(test.replace(" ", ""))
 
-    #digit = ['0','1','2','3','4','5','6','7','8','9']
-    #test = "."
-    #print(test in digit)
-
-    #test = input()
-
-    #testTokens = []
-    
-    #for token in tokenize.generate_tokens(StringIO(test).readline):
-    #    testTokens.append(token)
-
-    #while len(testTokens) > 0:
-    #    print(testTokens.pop(0).string)
-
-
-    #print(testTokens.pop(0).string)
-    #print(testTokens.pop(0).string)
-    #print(testTokens.pop(0).string)
-    #print(testTokens.pop(0).string)
-    #print(testTokens.pop(0).string)
-
     #test = "11"
     #try:
     #    test = int(test)
@@ -58,7 +38,31 @@ def test():
     #test = []
     #print(test[0])
 
-    test = None
+    tests = []
+    tests.append("22")
+    tests.append("2+2")
+    tests.append("2-2")
+    tests.append("2*2")
+    tests.append("2/2")
+    tests.append("(2)")
+    tests.append("-2")
+    tests.append("2+2*2")
+    tests.append("3*(2+2)")
+    tests.append("(2+4)/2")
+    tests.append("")
+
+    
+    #test7 = "())"
+    #test8 = "5**5"
+
+    for test in tests:
+        calc = Calc(test)
+        print(calc.eval())
+    
+    #calc1 = Calc(test7)
+    #print(calc1.eval() is "Invalid Input")
+    #calc2 = Calc(test8)
+    #print(calc2.eval() is "Invalid Input")
 
 
 

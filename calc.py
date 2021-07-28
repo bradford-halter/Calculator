@@ -100,7 +100,7 @@ class Calc:
     # Returns the value of the input expression
     def eval(self):
         try:
-            self.resultTree.eval()
+            return self.resultTree.eval()
         except:
             print("Invalid Input")
         
